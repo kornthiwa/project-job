@@ -1,12 +1,12 @@
-import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 import { showLoading, hideLoading, getAllJobs } from '../allJobs/allJobsSlice';
+import customFetch, { checkForUnauthorizedResponse } from '../../utils/axios';
 import { clearValues } from './jobSlice';
 
 export const createJobThunk = async (job, thunkAPI) => {
   try {
     const resp = await customFetch.post('/jobs', job);
     thunkAPI.dispatch(clearValues());
-    return resp.data;
+    return resp.data.msg;
   } catch (error) {
     return checkForUnauthorizedResponse(error, thunkAPI);
   }
@@ -16,8 +16,7 @@ export const deleteJobThunk = async (jobId, thunkAPI) => {
   try {
     const resp = await customFetch.delete(`/jobs/${jobId}`);
     thunkAPI.dispatch(getAllJobs());
-
-    return resp.data;
+    return resp.data.msg;
   } catch (error) {
     thunkAPI.dispatch(hideLoading());
     return checkForUnauthorizedResponse(error, thunkAPI);

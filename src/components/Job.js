@@ -3,10 +3,19 @@ import { Link } from 'react-router-dom';
 import Wrapper from '../assets/wrappers/Job';
 import { useDispatch } from 'react-redux';
 import JobInfo from './JobInfo';
-import moment from '../../node_modules/moment/moment';
+import moment from 'moment';
 import { deleteJob, setEditJob } from '../features/job/jobSlice';
-const Job = ({ _id, position, company, jobLocation, jobType, createdAt, status, }) => {
+const Job = ({
+  _id,
+  position,
+  company,
+  jobLocation,
+  jobType,
+  createdAt,
+  status,
+}) => {
   const dispatch = useDispatch();
+
   const date = moment(createdAt).format('MMM Do, YYYY');
 
   return (
@@ -30,7 +39,7 @@ const Job = ({ _id, position, company, jobLocation, jobType, createdAt, status, 
             <Link
               to='/add-job'
               className='btn edit-btn'
-              onClick={() => {
+              onClick={() =>
                 dispatch(
                   setEditJob({
                     editJobId: _id,
@@ -40,20 +49,17 @@ const Job = ({ _id, position, company, jobLocation, jobType, createdAt, status, 
                     jobType,
                     status,
                   })
-                );
-              }}
+                )
+              }
             >
               Edit
             </Link>
-            
             <button
               type='button'
               className='btn delete-btn'
-              onClick={() => {
-                dispatch(deleteJob(_id));
-              }}
+              onClick={() => dispatch(deleteJob(_id))}
             >
-              Delete
+              delete
             </button>
           </div>
         </footer>
@@ -61,5 +67,4 @@ const Job = ({ _id, position, company, jobLocation, jobType, createdAt, status, 
     </Wrapper>
   );
 };
-
 export default Job;

@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { toast } from 'react-toastify';
+import { getUserFromLocalStorage } from '../../utils/localStorage';
 import { createJobThunk, deleteJobThunk, editJobThunk } from './jobThunk';
-
 const initialState = {
   isLoading: false,
   position: '',
@@ -15,9 +14,13 @@ const initialState = {
   isEditing: false,
   editJobId: '',
 };
+
 export const createJob = createAsyncThunk('job/createJob', createJobThunk);
+
 export const deleteJob = createAsyncThunk('job/deleteJob', deleteJobThunk);
+
 export const editJob = createAsyncThunk('job/editJob', editJobThunk);
+
 const jobSlice = createSlice({
   name: 'job',
   initialState,
@@ -33,7 +36,7 @@ const jobSlice = createSlice({
     },
     setEditJob: (state, { payload }) => {
       return { ...state, isEditing: true, ...payload };
-      },
+    },
   },
   extraReducers: (builder) => {
     builder
