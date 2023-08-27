@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import { store } from './pages/store';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-document.title = "Job";
+document.title = "Job-Project";
 root.render(
     <Provider store={store}>
   <React.StrictMode>
