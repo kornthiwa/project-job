@@ -3,7 +3,7 @@ import { getUserFromLocalStorage } from './localStorage';
 import { clearStore } from '../features/user/userSlice';
 
 const customFetch = axios.create({
-  baseURL: 'https://jobify-prod.herokuapp.com/api/v1/toolkit',
+  baseURL:process.env.REACT_APP_API_URL,
 });
 
 customFetch.interceptors.request.use(
@@ -12,7 +12,8 @@ customFetch.interceptors.request.use(
     if (user) {
       config.headers['Authorization'] = `Bearer ${user.token}`;
     }
-    return config;
+    console.log(config);
+    return config 
   },
   (error) => {
     return Promise.reject(error);

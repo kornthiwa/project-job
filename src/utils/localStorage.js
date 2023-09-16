@@ -9,6 +9,7 @@ export const addUserToLocalStorage = (user) => {
   export const getUserFromLocalStorage = () => {
     const result = localStorage.getItem('user');
     const user = result ? JSON.parse(result) : null;
+    console.log(result);
     return user;
   };
   
